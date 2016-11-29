@@ -1,4 +1,5 @@
 {
   "name": "dwayne-redux",
-  "version": "1.0.0"
+  "version": "0.0.1",
+  "main": "dwayne-redux.js"
 }
