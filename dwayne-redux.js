@@ -14,6 +14,8 @@ export function provider(store) {
 
 export function connect(mapStateToArgs) {
   return function (Block) {
+    mapStateToArgs = mapStateToArgs || Block.mapStateToArgs;
+
     return class extends Block {
       constructor(opts) {
         super(opts);
