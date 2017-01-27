@@ -48,7 +48,7 @@ class MyBlock extends Block {
   static template = template;
   
   // this will also work (instead of specifying the argument in connect):
-  static mapStateToArgs() {
+  static mapStateToArgs(state) {
     return {
       prop: state.prop
     };
