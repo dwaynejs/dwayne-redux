@@ -1,4 +1,6 @@
-# Dwayne bindings for Redux.
+# dwayne-redux
+
+Dwayne bindings for [Redux](http://redux.js.org/ "Redux").
 
 ## Installation
 
@@ -52,7 +54,7 @@ class MyBlock extends Block {
     return {
       prop: state.prop
     };
-  };
+  }
 }
 
 function mapStateToArgs(state) {
