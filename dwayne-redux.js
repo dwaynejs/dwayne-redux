@@ -1,7 +1,9 @@
 const hasOwnProperty = {}.hasOwnProperty;
 
 export function provider(store) {
-  return function (Block) {
+  return (Block) => {
+    store = store || Block.reduxStore;
+
     return class extends Block {
       constructor(opts) {
         super(opts);
@@ -13,7 +15,7 @@ export function provider(store) {
 }
 
 export function connect(mapStateToArgs) {
-  return function (Block) {
+  return (Block) => {
     mapStateToArgs = mapStateToArgs || Block.mapStateToArgs;
 
     return class extends Block {

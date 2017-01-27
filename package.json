@@ -1,5 +1,9 @@
 {
   "name": "dwayne-redux",
-  "version": "0.0.2",
-  "main": "dwayne-redux.js"
+  "version": "0.0.3",
+  "main": "dwayne-redux.js",
+  "keywords": [
+    "dwayne",
+    "redux"
+  ]
 }
