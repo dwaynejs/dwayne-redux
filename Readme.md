@@ -32,7 +32,7 @@ class MyApp extends Block {
 }
 
 Block.block('MyApp', MyApp.wrap(
-  // if you don't specify a static property you have to do it here
+  // if you don't specify a static property you have to specify the argument here
   provider(store)
 ));
 ```
@@ -43,9 +43,6 @@ And then you have to wrap the block which uses the redux store like this:
 import { Block } from 'dwayne';
 import { connect } from 'dwayne-redux';
 import template from 'templatePath';
-import RootReducer from 'RootReducerPath';
-
-const store = createStore(RootReducer);
 
 class MyBlock extends Block {
   static template = template;
@@ -65,7 +62,7 @@ function mapStateToArgs(state) {
 }
 
 Block.block('MyBlock', MyBlock.wrap(
-  // if you don't specify a static property you have to do it here
+  // if you don't specify a static property you have to specify the argument here
   connect(mapStateToArgs)
 ));
 ```
