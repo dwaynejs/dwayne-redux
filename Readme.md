@@ -10,7 +10,8 @@ You can install dwayne-redux using npm.
 $ npm install --save dwayne-redux
 ```
 
-Also you have to use a module bundler like [Webpack](http://webpack.github.io/ "Webpack")
+Also you have to use a module bundler
+like [Webpack](http://webpack.github.io/ "Webpack")
 or [Browserify](http://browserify.org/ "Browserify").
 
 ## Usage
@@ -39,7 +40,8 @@ Block.block('MyApp', MyApp.wrap(
 ));
 ```
 
-And then you have to wrap the block which uses the redux store like this:
+And then you have to wrap the block
+which uses the redux store like this:
 
 ```javascript
 import { Block } from 'dwayne';
@@ -68,3 +70,6 @@ Block.block('MyBlock', MyBlock.wrap(
   connect(mapStateToArgs)
 ));
 ```
+
+And then the block will have specified properties
+from the store plus the dispatch function in its args.
