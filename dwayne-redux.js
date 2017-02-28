@@ -8,7 +8,7 @@ export function provider(store) {
       constructor(opts) {
         super(opts);
 
-        this.global.__reduxStore__ = store;
+        this.globals.__reduxStore__ = store;
       }
     };
   };
@@ -22,7 +22,7 @@ export function connect(mapStateToArgs) {
       constructor(opts) {
         super(opts);
 
-        const store = this.global.__reduxStore__;
+        const store = this.globals.__reduxStore__;
 
         assign(this.args, mapStateToArgs(store.getState()));
 
