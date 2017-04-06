@@ -57,6 +57,16 @@ class MyBlock extends Block {
       prop: state.prop
     };
   }
+  
+  static mapDispatchToArgs(dispatch) {
+    return {
+      onClick() {
+        dispatch({
+          type: 'CLICKED'
+        });
+      }
+    };
+  }
 }
 
 function mapStateToArgs(state) {
@@ -65,11 +75,24 @@ function mapStateToArgs(state) {
   };
 }
 
+function mapDispatchToArgs(dispatch) {
+  return {
+    onClick(elem) {
+      dispatch({
+        type: 'CLICKED',
+        elem
+      });
+    }
+  };
+}
+
 Block.block('MyBlock', MyBlock.wrap(
   // if you don't specify a static property you have to specify the argument here
-  connect(mapStateToArgs)
+  connect(mapStateToArgs, mapDispatchToArgs)
 ));
 ```
 
 And then the block will have specified properties
-from the store plus the dispatch function in its args.
+from the `mapStateToArgs` plus the props from the
+`mapDispatchToArgs` function (if `mapDispatchToArgs` not provided
+`store.dispatch` is passed as `dispatch`).
