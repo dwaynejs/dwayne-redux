@@ -18,38 +18,38 @@ or [Browserify](http://browserify.org/ "Browserify").
 
 You have to wrap your root block which uses Redux like this:
 
-```javascript
+```js
 import { Block } from 'dwayne';
 import { provider } from 'dwayne-redux';
 import { createStore } from 'redux';
-import template from 'templatePath';
+import html from './index.html';
 import RootReducer from 'RootReducerPath';
 
 const store = createStore(RootReducer);
 
 class MyApp extends Block {
-  static template = template;
+  static html = html;
   
   // this will also work (instead of specifying the argument in provider):
   static reduxStore = store;
 }
 
-Block.block('MyApp', MyApp.wrap(
+export default MyApp.wrap(
   // if you don't specify a static property you have to specify the argument here
   provider(store)
-));
+);
 ```
 
 And then you have to wrap the block
-which uses the redux store like this:
+which uses the Redux store like this:
 
-```javascript
+```js
 import { Block } from 'dwayne';
 import { connect } from 'dwayne-redux';
-import template from 'templatePath';
+import html from './index.html';
 
 class MyBlock extends Block {
-  static template = template;
+  static html = html;
   
   // this will also work (instead of specifying the argument in connect):
   static mapStateToArgs(state) {
@@ -60,9 +60,10 @@ class MyBlock extends Block {
   
   static mapDispatchToArgs(dispatch) {
     return {
-      onClick() {
+      onClick(elem) {
         dispatch({
-          type: 'CLICKED'
+          type: 'CLICKED',
+          elem
         });
       }
     };
@@ -86,10 +87,10 @@ function mapDispatchToArgs(dispatch) {
   };
 }
 
-Block.block('MyBlock', MyBlock.wrap(
-  // if you don't specify a static property you have to specify the argument here
+export default MyBlock.wrap(
+  // if you don't specify a static property you have to specify the arguments here
   connect(mapStateToArgs, mapDispatchToArgs)
-));
+);
 ```
 
 And then the block will have specified properties

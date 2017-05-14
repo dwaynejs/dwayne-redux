@@ -53,7 +53,7 @@ export function connect(mapStateToArgs, mapDispatchToArgs) {
           }
 
           iterate(oldArgs, (value, key) => {
-            if (!(key in newArgs)) {
+            if (!newArgs::hasOwnProperty(key)) {
               this.args[key] = undefined;
             }
           });
@@ -84,7 +84,7 @@ function assign(target, object) {
 
 function iterate(object, callback) {
   for (const key in object) {
-    if (hasOwnProperty.call(object, key)) {
+    if (object::hasOwnProperty(key)) {
       callback(object[key], key);
     }
   }
