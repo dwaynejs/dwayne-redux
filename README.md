@@ -31,12 +31,14 @@ const store = createStore(RootReducer);
 class MyApp extends Block {
   static html = html;
   
-  // this will also work (instead of specifying the argument in provider):
+  // this will also work (instead of specifying
+  // the argument in provider):
   static reduxStore = store;
 }
 
 export default MyApp.wrap(
-  // if you don't specify a static property you have to specify the argument here
+  // if you don't specify a static property you have to
+  // specify the argument here
   provider(store)
 );
 ```
@@ -52,7 +54,8 @@ import html from './index.html';
 class MyBlock extends Block {
   static html = html;
 
-  // this will also work (instead of specifying the argument in connect):
+  // this will also work (instead of specifying
+  // the argument in connect):
   static mapStateToArgs(state) {
     return {
       prop: state.prop
@@ -89,7 +92,8 @@ function mapDispatchToArgs(dispatch) {
 }
 
 export default MyBlock.wrap(
-  // if you don't specify a static property you have to specify the arguments here
+  // if you don't specify a static property you have to
+  // specify the arguments here
   connect(mapStateToArgs, mapDispatchToArgs)
 );
 ```
@@ -110,14 +114,36 @@ extend class.
 static `reduxStore` property to set a global store property
 that is used by connected blocks.
 
+Example:
+
+```js
+export default MyBlock.wrap(
+  provider(store)
+);
+```
+
 ##### `connect(mapStateToArgs, mapDispatchToArgs): typeof Block`
 
 `connect` wrapper uses the `mapStateToArgs` and `mapDispatchToArgs`
 arguments (or their static block properties analogs) the same way
 as they are used by [react-redux](https://github.com/reactjs/react-redux).
 
+Example:
+
+```js
+export default MyBlock.wrap(
+  connect(mapStateToArgs, mapDispatchToArgs)
+);
+```
+
 ##### `Connected`
 
 Use this class to extend the default `Block` class so that all blocks
 become _connected_ (if they have at least one of `mapStateToArgs` and
 `mapDispatchToArgs` static properties).
+
+Example:
+
+```js
+Block.extend(Connected);
+```
