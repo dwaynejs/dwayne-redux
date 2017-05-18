@@ -7,6 +7,8 @@ export function provider(store) {
     store = store || Block.reduxStore;
 
     return class extends Block {
+      static displayName = `Provider(${ Block.displayName || Block.name })`;
+
       constructor(opts) {
         super(opts);
 
@@ -26,6 +28,8 @@ export function connect(mapStateToArgs, mapDispatchToArgs) {
     }
 
     return class extends Block {
+      static displayName = `Connected(${ Block.displayName || Block.name })`;
+
       constructor(opts) {
         super(opts);
 

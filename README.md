@@ -1,6 +1,7 @@
 # dwayne-redux
 
 Dwayne bindings for [Redux](http://redux.js.org/ "Redux").
+Inspired by [react-redux](https://github.com/reactjs/react-redux).
 
 ## Installation
 
@@ -50,14 +51,14 @@ import html from './index.html';
 
 class MyBlock extends Block {
   static html = html;
-  
+
   // this will also work (instead of specifying the argument in connect):
   static mapStateToArgs(state) {
     return {
       prop: state.prop
     };
   }
-  
+
   static mapDispatchToArgs(dispatch) {
     return {
       onClick(elem) {
@@ -97,3 +98,26 @@ And then the block will have specified properties
 from the `mapStateToArgs` plus the props from the
 `mapDispatchToArgs` function (if `mapDispatchToArgs` not provided
 `store.dispatch` is passed as `dispatch`).
+
+### API
+
+The plugin exports `provider` and `connect` wrappers and `Connected`
+extend class.
+
+##### `provider(ReduxStore?: store): typeof Block`
+
+`provider` wrapper uses store from the argument or the block
+static `reduxStore` property to set a global store property
+that is used by connected blocks.
+
+##### `connect(mapStateToArgs, mapDispatchToArgs): typeof Block`
+
+`connect` wrapper uses the `mapStateToArgs` and `mapDispatchToArgs`
+arguments (or their static block properties analogs) the same way
+as they are used by [react-redux](https://github.com/reactjs/react-redux).
+
+##### `Connected`
+
+Use this class to extend the default `Block` class so that all blocks
+become _connected_ (if they have at least one of `mapStateToArgs` and
+`mapDispatchToArgs` static properties).
